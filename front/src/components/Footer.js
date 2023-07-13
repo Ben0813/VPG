@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const [openingHours, setOpeningHours] = useState([]);
@@ -24,9 +25,9 @@ function Footer() {
         </p>
         <ul className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4 text-center sm:mb-0">
           <li>
-            <a href="#" className="text-white">
+            <Link to="/cgv" className="text-white">
               CGV
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#" className="text-white">
