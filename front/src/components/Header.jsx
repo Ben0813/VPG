@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-scroll";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link as ScrollLink, scroller } from "react-scroll";
 
 const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollTo, setScrollTo] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +21,36 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (scrollTo) {
+      scroller.scrollTo(scrollTo, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
+      setScrollTo(null);
+    }
+  }, [location.pathname, scrollTo]);
+
   const handleLogin = () => {
-    window.location.href = "http://localhost:3002/login";
+    navigate("/login");
   };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const scrollToSection = (section) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setScrollTo(section);
+    } else {
+      scroller.scrollTo(section, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
+    }
   };
 
   const isTransparent = scrollPosition > 0;
@@ -35,42 +63,34 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <img
-            src="http://localhost:3000/uploads/logo.png"
-            alt="logo"
-            className="h-10"
-          />
+          <Link to="/" className="cursor-pointer">
+            <img
+              src="http://localhost:3000/uploads/logo.png"
+              alt="logo"
+              className="h-10"
+            />
+          </Link>
           <nav className="hidden md:flex md:items-center md:space-x-4">
             <Link
-              to="services"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              className="text-white mx-4 cursor-pointer font-rajdhani"
+              to="/services"
+              className={`text-white mx-4 cursor-pointer font-rajdhani ${
+                location.pathname === "/services" ? "underline" : ""
+              }`}
             >
               Services
             </Link>
-            <Link
-              to="cars"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              className="text-white mx-4 cursor-pointer font-rajdhani"
+            <ScrollLink
+              onClick={() => scrollToSection("cars")}
+              className={`text-white mx-4 cursor-pointer font-rajdhani`}
             >
-              Cars
-            </Link>
-            <Link
-              to="testimonials"
-              spy={true}
-              smooth={true}
-              offset={-70}
-              duration={500}
-              className="text-white mx-4 cursor-pointer font-rajdhani"
+              Occasions
+            </ScrollLink>
+            <ScrollLink
+              onClick={() => scrollToSection("testimonials")}
+              className={`text-white mx-4 cursor-pointer font-rajdhani`}
             >
-              Testimonials
-            </Link>
+              Témoignages
+            </ScrollLink>
           </nav>
         </div>
         <div className="flex items-center">
@@ -115,19 +135,15 @@ const Header = () => {
           <ul className="flex flex-col items-center py-2 space-y-2">
             <li>
               <Link
-                to="services"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
+                to="/services"
                 className="text-brand-light cursor-pointer font-rajdhani"
               >
                 Services
               </Link>
             </li>
             <li>
-              <Link
-                to="cars"
+              <ScrollLink
+                onClick={() => scrollToSection("cars")}
                 spy={true}
                 smooth={true}
                 offset={-70}
@@ -135,11 +151,11 @@ const Header = () => {
                 className="text-brand-light cursor-pointer font-rajdhani"
               >
                 Cars
-              </Link>
+              </ScrollLink>
             </li>
             <li>
-              <Link
-                to="testimonials"
+              <ScrollLink
+                onClick={() => scrollToSection("testimonials")}
                 spy={true}
                 smooth={true}
                 offset={-70}
@@ -147,7 +163,7 @@ const Header = () => {
                 className="text-brand-light cursor-pointer font-rajdhani"
               >
                 Testimonials
-              </Link>
+              </ScrollLink>
             </li>
             <li>
               <button

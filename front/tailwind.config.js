@@ -8,6 +8,8 @@ module.exports = {
         metal: "#1B2432",
         rich: "#121420",
         khaki: "#A99985",
+        green: "#348a68",
+        red: "#8a343b",
       },
       fontFamily: {
         rajdhani: ["Rajdhani", "sans-serif"],

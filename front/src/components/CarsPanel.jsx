@@ -124,53 +124,59 @@ const CarsPanel = () => {
   };
 
   return (
-    <div className="bg-D92332 text-white p-4">
-      <h1 className="text-2xl mb-4 font-barlow">Véhicules</h1>
+    <div className="min-h-screen bg-khaki p-4">
+      <h2 className="text-3xl font-rajdhani text-center mb-4">
+        Gestion des véhicules
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {cars.map((car) => (
           <div
             key={car.id}
-            className="bg-F2F2F2 text-262526 p-4 rounded shadow"
+            className="bg-metal text-white p-4 rounded-xl shadow"
           >
             <img
               src={`http://localhost:3000${car.pictureUrl}`}
               alt={car.make}
               className="w-full mb-4"
             />
-            <h2 className="text-xl font-bold mb-2 font-rajdhani">{car.make}</h2>
-            <p className="text-gray-600 mb-2">{car.model}</p>
-            <p className="text-gray-600 mb-2">{car.year}</p>
-            <p className="text-gray-600 mb-4">{car.mileage} Kilométrage</p>
-            <p className="text-gray-600 mb-4">{car.price}€</p>
+            <h2 className="text-xl font-rajdhani font-bold mb-2">{car.make}</h2>
+            <p className="text-white mb-2 font-barlow">{car.model}</p>
+            <p className="text-white mb-2 font-barlow">{car.year}</p>
+            <p className="text-white mb-4 font-barlow">
+              {car.mileage} Kilométrage
+            </p>
+            <p className="text-white mb-4 font-barlow">{car.price}€</p>
             <div>
               <button
-                className="bg-D94350 text-white px-4 py-2 rounded mr-2"
+                className="bg-red text-white px-4 py-2 rounded mr-2 font-rajdhani"
                 onClick={() => deleteCar(car.id)}
               >
-                Delete
+                Supprimer
               </button>
               <button
-                className="bg-D9777F text-white px-4 py-2 rounded mr-2"
+                className="bg-raisin text-white px-4 py-2 rounded mr-2 font-rajdhani"
                 onClick={() => openUpdatePanel(car)}
               >
-                Update
+                Modifier
               </button>
             </div>
           </div>
         ))}
       </div>
       <button
-        className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+        className="bg-green text-white px-4 py-2 rounded mt-4 font-rajdhani"
         onClick={openCreatePanel}
       >
-        Create
+        Ajouter
       </button>
 
       {/* The Update Panel */}
       {showUpdatePanel && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded shadow">
-            <h2 className="text-xl font-bold mb-2">Update Car</h2>
+          <div className="bg-rich p-4 rounded-xl shadow">
+            <h2 className="text-xl font-rajdhani font-bold mb-2">
+              Modifier une voiture
+            </h2>
             <input
               type="text"
               placeholder="Make"
@@ -257,8 +263,10 @@ const CarsPanel = () => {
       {/* The Create Panel */}
       {showCreatePanel && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded shadow">
-            <h2 className="text-xl font-bold mb-2">Create Car</h2>
+          <div className="bg-rich p-4 rounded-xl shadow">
+            <h2 className="text-xl font-rajdhani font-bold mb-2">
+              Créer une voiture
+            </h2>
             <input
               type="text"
               placeholder="Make"

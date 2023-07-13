@@ -8,6 +8,8 @@ import EmployeePage from "./components/views/EmployeePage";
 import NotFoundPage from "./components/views/NotFoundPage";
 import LoginPage from "./components/views/LoginPage";
 import Header from "./components/Header";
+import Entretien from "./components/views/ServicesPage";
+import ServicesPage from "./components/views/ServicesPage";
 
 const HomePage = () => {
   return (
@@ -37,6 +39,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/employee" element={<EmployeePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const TestimonialsForm = () => {
+  // eslint-disable-next-line
   const [testimonials, setTestimonials] = useState([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -10,7 +11,7 @@ const TestimonialsForm = () => {
   useEffect(() => {
     fetchTestimonials();
   }, []);
-
+  // eslint-disable-next-line
   const fetchTestimonials = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Testimonials");
@@ -19,7 +20,7 @@ const TestimonialsForm = () => {
       console.error(error);
     }
   };
-
+  // eslint-disable-next-line
   const deleteTestimonial = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/Testimonials/${id}`);
@@ -52,38 +53,42 @@ const TestimonialsForm = () => {
   };
 
   return (
-    <div className="bg-brand-red-lighter p-4 rounded-lg">
-      {/* Form to create a new testimonial */}
-      <form onSubmit={createTestimonial} className="flex flex-col">
+    <div className="bg-khaki-lighter p-8 rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-rich mb-6 font-rajdhani">
+        Laissez-nous votre commentaire
+      </h1>
+      <form onSubmit={createTestimonial} className="flex flex-col space-y-4">
         <input
-          className="mb-2 px-2 py-1 border border-brand-dark rounded font-barlow"
+          className="px-3 py-2 border border-metal rounded font-barlow"
           type="text"
-          placeholder="Name"
+          placeholder="Nom"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          className="mb-2 px-2 py-1 border border-brand-dark rounded font-barlow"
+          className="px-3 py-2 border border-metal rounded font-barlow"
           type="text"
-          placeholder="Comment"
+          placeholder="Commentaire"
           required
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
         <input
-          className="mb-2 px-2 py-1 border border-brand-dark rounded font-barlow"
+          className="px-3 py-2 border border-metal rounded font-barlow"
           type="number"
-          placeholder="Rating"
+          placeholder="Note (1-5)"
           required
+          min="0"
+          max="5"
           value={rating}
           onChange={(e) => setRating(e.target.value)}
         />
         <button
-          className="bg-brand-red hover:bg-brand-red-light text-brand-light py-1 px-2 rounded font-rajdhani"
+          className="px-4 py-2 bg-raisin text-khaki font-rajdhani rounded hover:bg-metal transition-colors duration-200"
           type="submit"
         >
-          Create
+          Soumettre
         </button>
       </form>
     </div>
