@@ -1,4 +1,3 @@
-// Importing necessary libraries and components
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CarSelector from "./components/CarSelector";
 import Footer from "./components/Footer";
@@ -14,7 +13,6 @@ import CGVPage from "./components/views/CGVPage";
 import PrivacyPolicyPage from "./components/views/PrivacyPolicyPage";
 import ContactPage from "./components/views/ContactPage";
 
-// Component representing the Home Page
 const HomePage = () => {
   return (
     <div className="App">
@@ -36,7 +34,6 @@ const HomePage = () => {
   );
 };
 
-// Main App component
 function App() {
   return (
     <Router>

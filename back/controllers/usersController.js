@@ -1,45 +1,40 @@
-// Importing necessary libraries and User model
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 
-// Handler to get all users
 export const getAllUsers = (req, res) => {
   User.findAll()
     .then((users) => {
-      res.json(users); // Sending the fetched users as response
+      res.json(users);
     })
     .catch((err) => {
-      console.log(err); // Logging any error
-      res.status(500).json({ message: "Internal Server Error" }); // Sending error response
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     });
 };
 
-// Handler to get a user by ID
 export const getUserById = (req, res) => {
   User.findByPk(req.params.id)
     .then((user) => {
-      res.json(user); // Sending the fetched user as response
+      res.json(user);
     })
     .catch((err) => {
-      console.log(err); // Logging any error
-      res.status(500).json({ message: "Internal Server Error" }); // Sending error response
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     });
 };
 
-// Handler to create a new user
 export const createUser = (req, res) => {
   User.create(req.body)
     .then((user) => {
-      res.json(user); // Sending the created user as response
+      res.json(user);
     })
     .catch((err) => {
-      console.log(err); // Logging any error
-      res.status(500).json({ message: "Internal Server Error" }); // Sending error response
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     });
 };
 
-// Handler to update an existing user
 export const updateUser = (req, res) => {
   User.update(req.body, {
     where: {
@@ -49,15 +44,14 @@ export const updateUser = (req, res) => {
     plain: true,
   })
     .then(([_, updatedUser]) => {
-      res.json(updatedUser); // Sending the updated user as response
+      res.json(updatedUser);
     })
     .catch((err) => {
-      console.log(err); // Logging any error
-      res.status(500).json({ message: "Internal Server Error" }); // Sending error response
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     });
 };
 
-// Handler to delete a user
 export const deleteUser = (req, res) => {
   User.destroy({
     where: {
@@ -65,35 +59,34 @@ export const deleteUser = (req, res) => {
     },
   })
     .then(() => {
-      res.status(204).json({ message: "User deleted" }); // Sending deletion confirmation as response
+      res.status(204).json({ message: "User deleted" });
     })
     .catch((err) => {
-      console.log(err); // Logging any error
-      res.status(500).json({ message: "Internal Server Error" }); // Sending error response
+      console.log(err);
+      res.status(500).json({ message: "Internal Server Error" });
     });
 };
 
-// Handler to log in a user
+//login a user
 export const loginUser = (req, res) => {
   const { email, password } = req.body;
   User.findOne({ where: { email } })
     .then(async (user) => {
       if (!user || !(await bcrypt.compare(password, user.password))) {
-        return res.status(401).json({ message: "Invalid email or password" }); // Invalid credentials
+        return res.status(401).json({ message: "Invalid email or password" });
       }
       const token = jwt.sign(
         { id: user.id, role: user.role },
         process.env.JWT_SECRET
       );
-      res.json({ token }); // Sending the token as response
+      res.json({ token });
     })
     .catch((err) => {
-      console.error(err); // Logging any error
-      res.status(500).json({ message: "Internal Server Error" }); // Sending error response
+      console.error(err);
+      res.status(500).json({ message: "Internal Server Error" });
     });
 };
 
-// Exporting all handlers as a controller
 const userController = {
   getAllUsers,
   getUserById,

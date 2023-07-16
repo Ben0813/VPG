@@ -9,15 +9,17 @@ const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollTo, setScrollTo] = useState(null);
 
+  //updates the scroll position state on scroll
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.pageYOffset);
+      setScrollPosition(window.scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  //Scrolls to a section
   useEffect(() => {
     if (scrollTo) {
       scroller.scrollTo(scrollTo, {
@@ -29,6 +31,7 @@ const Header = () => {
     }
   }, [location.pathname, scrollTo]);
 
+  //navigation to a path and scrolls to a section
   const handleNavigation = (path, section) => {
     if (location.pathname !== path) {
       navigate(path);
@@ -42,6 +45,7 @@ const Header = () => {
     }
   };
 
+  //return a navigation link
   const navLink = (path, label, section) => {
     if (section) {
       return (

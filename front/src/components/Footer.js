@@ -6,6 +6,7 @@ function Footer() {
   const [openingHours, setOpeningHours] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  //fetch opening hours data from the server
   useEffect(() => {
     axios
       .get("http://localhost:3000/OpeningHours")
@@ -13,10 +14,12 @@ function Footer() {
       .catch((error) => console.log(error));
   }, []);
 
+  //toggles the display of the opening hours list
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
+  //Redirects the user to the phone app
   const handlePhoneClick = () => {
     window.location.href = "tel:0493506971";
   };

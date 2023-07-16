@@ -10,6 +10,7 @@ const ContactPage = () => {
     phone: "",
   });
 
+  //updates the form state with the new value of the input
   const handleChange = (e) => {
     setFormState({
       ...formState,
@@ -17,6 +18,7 @@ const ContactPage = () => {
     });
   };
 
+  //send email to a specific email with the form data
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, message, phone } = formState;

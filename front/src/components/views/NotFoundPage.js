@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // make sure to import Link from your router library
-
+import { Link } from "react-router-dom";
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-brand-red-lighter text-brand-dark px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-khaki to-white">

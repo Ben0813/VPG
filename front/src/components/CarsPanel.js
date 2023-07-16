@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+//retrieves the current user ID from local storage
 const getCurrentUserId = () => {
   const userId = localStorage.getItem("userId");
   return userId ? userId : "";
 };
 
+//show a panel with a list of cars, allows the user to create, update and delete cars
 const CarsPanel = () => {
   const [cars, setCars] = useState([]);
   const [showUpdatePanel, setShowUpdatePanel] = useState(false);
@@ -22,10 +24,12 @@ const CarsPanel = () => {
   const [imageFile, setImageFile] = useState(null);
   const [updateImageFile, setUpdateImageFile] = useState(null);
 
+  //fetch list of cars from the server when the component is mounted
   useEffect(() => {
     fetchCars();
   }, []);
 
+  //fetch list of cars from the server
   const fetchCars = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Cars");
@@ -89,6 +93,7 @@ const CarsPanel = () => {
     setShowCreatePanel(false);
   };
 
+  //create a car on the server
   const createCar = async () => {
     try {
       const formData = new FormData();
@@ -98,6 +103,7 @@ const CarsPanel = () => {
       formData.append("mileage", newCar.mileage);
       formData.append("price", newCar.price);
       formData.append("userId", newCar.userId);
+
       formData.append("image", imageFile);
 
       await axios.post("http://localhost:3000/Cars", formData, {

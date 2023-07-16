@@ -25,8 +25,7 @@ Service.init(
     userId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "Users", // 'Users' refers to table name
-        key: "id",
+        model: "Users",
       },
       allowNull: false,
     },

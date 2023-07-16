@@ -1,4 +1,4 @@
-// Importing required modules
+//importing required modules
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -12,7 +12,7 @@ import AdminJS from "adminjs";
 import AdminJSExpress from "@adminjs/express";
 import AdminJSSequelize from "@adminjs/sequelize";
 
-// Importing models and routes
+//importing models from routes
 import { sequelize } from "./models/index.js";
 import User from "./models/user.js";
 import carRoutes from "./routes/cars.js";
@@ -20,7 +20,7 @@ import openingHourRoutes from "./routes/openinghours.js";
 import serviceRoutes from "./routes/services.js";
 import testimonialRoutes from "./routes/testimonials.js";
 
-// Adding hooks for password hashing
+//hooks for password hashing
 User.addHook("beforeCreate", async (user) => {
   if (user.password) {
     const salt = await bcrypt.genSalt(10);
@@ -35,13 +35,12 @@ User.addHook("beforeUpdate", async (user) => {
   }
 });
 
-// Registering the adapter
 AdminJS.registerAdapter(AdminJSSequelize);
 
-// Creating an express application
+//create express application
 const app = express();
 
-// Using express session
+//using express session
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -50,7 +49,7 @@ app.use(
   })
 );
 
-// Setting up AdminJS
+//setting of AdminJS
 const adminJs = new AdminJS({
   databases: [sequelize],
   rootPath: "/admin",
@@ -62,11 +61,10 @@ const adminJs = new AdminJS({
           currentAdmin && currentAdmin.role === "admin",
       },
     },
-    // Add other resources here
   ],
 });
 
-// Building an authenticated router
+//authenticated router
 const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   authenticate: async (email, password) => {
     const user = await User.findOne({ where: { email } });
@@ -79,14 +77,14 @@ const router = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   cookiePassword: process.env.COOKIE_PASSWORD,
 });
 
-// Using the router
+//using the router
 app.use(adminJs.options.rootPath, router);
 
-// Using middleware
+//using middleware
 app.use(express.json());
 app.use(cors());
 
-// Login route
+//login route
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
@@ -97,10 +95,11 @@ app.post("/login", async (req, res) => {
     { id: user.id, role: user.role },
     process.env.JWT_SECRET
   );
-  res.json({ token, role: user.role }); // Adding the user's role to the response
+  // Adding the user's role to the response
+  res.json({ token, role: user.role });
 });
 
-// Authentication middleware
+//authentication middleware
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
@@ -116,16 +115,16 @@ const authenticate = (req, res, next) => {
   }
 };
 
-// Using static files
+//using static files
 app.use("/uploads", express.static("uploads"));
 
-// Using routes
+//using routes
 app.use("/cars", carRoutes);
 app.use("/openinghours", openingHourRoutes);
 app.use("/services", serviceRoutes);
 app.use("/testimonials", testimonialRoutes);
 
-// Synchronizing models and starting the server
+//synchronizing models and starting the server
 sequelize
   .sync({ alter: false })
   .then(() => {

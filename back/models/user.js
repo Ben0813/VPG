@@ -5,7 +5,6 @@ class User extends Model {}
 
 User.init(
   {
-    // Define the model attributes
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,

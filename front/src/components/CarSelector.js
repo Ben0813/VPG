@@ -1,16 +1,13 @@
-// Import necessary dependencies
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-// Slider component to adjust numerical values
+//adjust numerical values
 const Slider = ({ min, max, value, onChange }) => {
-  // Function to handle change in slider value
   const handleChange = (event) => {
     const newValue = parseInt(event.target.value);
     onChange(newValue);
   };
-
-  // Render the slider component
+  //rendering filter
   return (
     <div className="flex flex-col items-center mb-4">
       <span className="font-rajdhani text-gray-900">{value}</span>
@@ -26,9 +23,8 @@ const Slider = ({ min, max, value, onChange }) => {
   );
 };
 
-// CarSelector component to filter and display car data
+//filter and display car data
 const CarSelector = () => {
-  // State variables to store cars and filter conditions
   const [cars, setCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [makeFilter, setMakeFilter] = useState("");
@@ -37,7 +33,7 @@ const CarSelector = () => {
   const [mileageFilter, setMileageFilter] = useState(300000);
   const [priceFilter, setPriceFilter] = useState(25000);
 
-  // Fetch car data when the component mounts
+  //show car data when the component is mounted
   useEffect(() => {
     axios
       .get("http://localhost:3001/Cars")
@@ -47,7 +43,7 @@ const CarSelector = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  // Re-filter cars when cars data or filter conditions change
+  //re-filter cars when cars data or filter conditions change
   useEffect(() => {
     const filtered = cars.filter((car) => {
       const makeMatch = car.make
@@ -66,7 +62,7 @@ const CarSelector = () => {
     setFilteredCars(filtered);
   }, [makeFilter, modelFilter, yearFilter, mileageFilter, priceFilter, cars]);
 
-  // Function to create a mailto link for car inquiries
+  //create a mailto link for information request
   const createMailToLink = (carId) => {
     const subject = `Interested in car no. ${carId}`;
     const body =
@@ -76,13 +72,12 @@ const CarSelector = () => {
     )}&body=${encodeURIComponent(body)}`;
   };
 
-  // Function to handle click event on the Contact button
+  //event on the Contact button
   const handleContactClick = (e, carId) => {
     e.preventDefault();
     window.location.href = createMailToLink(carId);
   };
 
-  // Render the CarSelector component
   return (
     <div className="p-4 bg-gray-100 w-full">
       <h2 className="text-2xl font-bold mb-4 text-center">
@@ -174,5 +169,4 @@ const CarSelector = () => {
   );
 };
 
-// Export CarSelector component
 export default CarSelector;

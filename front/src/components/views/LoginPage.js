@@ -1,32 +1,24 @@
-// Importing necessary libraries and hooks
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// Component representing the Login Page
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // Effect hook to check if user is authenticated
+  //check if user is authenticated
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("token") !== null;
     const hasEmployeeRole = localStorage.getItem("role") === "employee";
 
-    // Logging for debugging purposes
-    console.log("Token du localStorage :", localStorage.getItem("token"));
-    console.log("Rôle du localStorage :", localStorage.getItem("role"));
-    console.log("Utilisateur authentifié :", isAuthenticated);
-    console.log("A le rôle 'employee' :", hasEmployeeRole);
-
-    // Redirect to login if not authenticated or doesn't have the role 'employee'
+    //redirect to login if not authenticated or doesn't have the role 'employee'
     if (!isAuthenticated || !hasEmployeeRole) {
       navigate("/login");
     }
   }, [navigate]);
 
-  // Function to handle login
+  //handle login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -36,6 +28,10 @@ const LoginPage = () => {
         password: password,
       });
 
+      /**
+       * handles the submission of the form and send a POST request to the API
+       * if the request fails, an error message is displayed
+       */
       if (response.status === 200) {
         const token = response.data.token;
         const role = response.data.role;
@@ -46,9 +42,6 @@ const LoginPage = () => {
         } else {
           navigate("/employee");
         }
-
-        console.log("Token enregistré :", localStorage.getItem("token"));
-        console.log("Rôle enregistré :", localStorage.getItem("role"));
       } else {
         alert("Identifiants invalides");
       }
@@ -58,7 +51,6 @@ const LoginPage = () => {
     }
   };
 
-  // Render login form
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-khaki to-white">
       <div className="bg-rich p-6 rounded-xl shadow-lg w-full max-w-md">

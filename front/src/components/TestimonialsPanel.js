@@ -4,6 +4,7 @@ import axios from "axios";
 const TestimonialsPanel = ({ testimonial }) => {
   const [approved, setApproved] = useState(testimonial.approved);
 
+  // toggles the testimonial approve status and updates in the database
   const toggleApproval = async () => {
     try {
       await axios.put(`http://localhost:3000/Testimonials/${testimonial.id}`, {
@@ -34,9 +35,11 @@ const TestimonialsPanel = ({ testimonial }) => {
   );
 };
 
+// fetch list of testimonials from the database and renders them using the TestimonialsPanel component
 const TestimonialsList = () => {
   const [testimonials, setTestimonials] = useState([]);
 
+  // Fetch list of testimonials from the database when the component mounts
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
@@ -64,6 +67,4 @@ const TestimonialsList = () => {
   );
 };
 
-export default function App() {
-  return <TestimonialsList />;
-}
+export default TestimonialsList;
