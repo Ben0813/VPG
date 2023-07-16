@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Link as ScrollLink, scroller } from "react-scroll";
+import { scroller } from "react-scroll";
 
 const Header = () => {
   const location = useLocation();
@@ -11,14 +11,11 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
+      setScrollPosition(window.pageYOffset);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -32,17 +29,9 @@ const Header = () => {
     }
   }, [location.pathname, scrollTo]);
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const scrollToSection = (section) => {
-    if (location.pathname !== "/") {
-      navigate("/");
+  const handleNavigation = (path, section) => {
+    if (location.pathname !== path) {
+      navigate(path);
       setScrollTo(section);
     } else {
       scroller.scrollTo(section, {
@@ -53,12 +42,32 @@ const Header = () => {
     }
   };
 
-  const isTransparent = scrollPosition > 0;
+  const navLink = (path, label, section) => {
+    if (section) {
+      return (
+        <div
+          onClick={() => handleNavigation(path, section)}
+          className="text-white mx-4 cursor-pointer font-rajdhani hover:text-khaki"
+        >
+          {label}
+        </div>
+      );
+    } else {
+      return (
+        <Link
+          to={path}
+          className="text-white mx-4 cursor-pointer font-rajdhani hover:text-khaki"
+        >
+          {label}
+        </Link>
+      );
+    }
+  };
 
   return (
     <header
       className={`py-4 fixed top-0 left-0 right-0 z-10 transition duration-500 ${
-        isTransparent ? "bg-raisin bg-opacity-80" : "bg-raisin"
+        scrollPosition > 0 ? "bg-raisin bg-opacity-80" : "bg-raisin"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between">
@@ -67,45 +76,29 @@ const Header = () => {
             <img
               src="http://localhost:3000/uploads/logo.png"
               alt="logo"
-              className="h-10"
+              className="h-12"
             />
           </Link>
-          <nav className="hidden md:flex md:items-center md:space-x-4">
-            <Link
-              to="/services"
-              className={`text-white mx-4 cursor-pointer font-rajdhani ${
-                location.pathname === "/services" ? "underline" : ""
-              }`}
-            >
-              Services
-            </Link>
-            <ScrollLink
-              onClick={() => scrollToSection("cars")}
-              className={`text-white mx-4 cursor-pointer font-rajdhani`}
-            >
-              Occasions
-            </ScrollLink>
-            <ScrollLink
-              onClick={() => scrollToSection("testimonials")}
-              className={`text-white mx-4 cursor-pointer font-rajdhani`}
-            >
-              Témoignages
-            </ScrollLink>
+          <nav className="hidden md:flex md:items-center md:space-x-4 ml-4 ">
+            {navLink("/services", "Services")}
+            {navLink("/", "Occasions", "cars")}
+            {navLink("/", "Témoignages", "testimonials")}
+            {navLink("/contact", "Contact", "contact")}
           </nav>
         </div>
         <div className="flex items-center">
           <button
-            onClick={handleLogin}
-            className="hidden md:block text-white px-4 py-2 font-barlow"
+            onClick={() => navigate("/login")}
+            className="hidden md:block text-white px-4 py-2 font-barlow hover:text-khaki"
           >
             Connexion
           </button>
           <button
-            onClick={toggleMobileMenu}
-            className="md:hidden bg-brand-light p-2 rounded-md"
+            onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden bg-brand-light p-2 rounded-md hover:text-khaki"
           >
             <svg
-              className="h-6 w-6 text-brand-red-light"
+              className="h-6 w-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -132,43 +125,15 @@ const Header = () => {
       </div>
       {isMobileMenuOpen && (
         <nav className="md:hidden bg-brand-red mt-2">
-          <ul className="flex flex-col items-center py-2 space-y-2">
-            <li>
-              <Link
-                to="/services"
-                className="text-brand-light cursor-pointer font-rajdhani"
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <ScrollLink
-                onClick={() => scrollToSection("cars")}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-brand-light cursor-pointer font-rajdhani"
-              >
-                Cars
-              </ScrollLink>
-            </li>
-            <li>
-              <ScrollLink
-                onClick={() => scrollToSection("testimonials")}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                className="text-brand-light cursor-pointer font-rajdhani"
-              >
-                Testimonials
-              </ScrollLink>
-            </li>
+          <ul className="flex flex-col items-center py-2 space-y-2 text-white">
+            {navLink("/services", "Services")}
+            {navLink("/", "Occasions", "cars")}
+            {navLink("/", "Témoignages", "testimonials")}
+            {navLink("/contact", "Contact", "contact")}
             <li>
               <button
-                onClick={handleLogin}
-                className="text-brand-light px-4 py-2 rounded-md hover:bg-brand-red-lighter font-barlow"
+                onClick={() => navigate("/login")}
+                className="text-white px-4 py-2 rounded-md hover:text-khaki font-barlow"
               >
                 Connexion
               </button>

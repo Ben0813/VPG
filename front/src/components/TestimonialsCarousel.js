@@ -12,6 +12,20 @@ const settings = {
   autoplaySpeed: 5000,
   arrows: false,
   pauseOnHover: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 640,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
 const TestimonialsCarousel = () => {
@@ -34,7 +48,7 @@ const TestimonialsCarousel = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-b from-khaki to-khaki-dark">
+    <div className="flex items-center justify-center lg:h-screen h-auto pt-0 bg-gradient-to-b from-khaki to-white">
       <div className="w-full max-w-4xl p-4 bg-metal text-khaki rounded-xl shadow-lg">
         <h1 className="text-3xl font-rajdhani font-bold mb-4">Témoignages</h1>
         <Slider {...settings}>

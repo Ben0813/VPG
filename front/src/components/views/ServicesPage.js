@@ -13,33 +13,35 @@ const ServicesPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-rich text-khaki font-rajdhani p-4 md:space-y-8 justify-between">
+    <div className="flex flex-col min-h-screen bg-rich text-khaki font-rajdhani">
       <Header />
-      <div className="flex-grow flex flex-col justify-center items-center space-y-4 mt-4">
-        {services.map((service) => (
-          <div key={service.name} className="mt-8">
-            <h1 className="text-xl text-khaki items-center md:text-3xl lg:text-5xl font-bold mb-4 mt-4 text-center underline">
-              {service.name}
-            </h1>
+      <main className="flex-grow pt-24 p-4">
+        <div className="flex-grow flex flex-col justify-center items-center space-y-4 mt-4">
+          {services.map((service) => (
+            <div key={service.name} className="mt-8">
+              <h1 className="text-xl text-khaki items-center md:text-3xl lg:text-5xl font-bold mb-4 mt-4 text-center underline">
+                {service.name}
+              </h1>
 
-            <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
-              {service.description_long}
+              <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
+                {service.description_long}
+              </p>
+            </div>
+          ))}
+
+          <div className="flex flex-col items-center mt-4">
+            <p className="text-base md:text-lg lg:text-xl">
+              Pour prendre un rendez-vous, veuillez nous contacter au :
             </p>
+            <a
+              href="tel:0493506971"
+              className="mt-2 bg-green text-white py-2 px-4 rounded"
+            >
+              0493506971
+            </a>
           </div>
-        ))}
-
-        <div className="flex flex-col items-center mt-4">
-          <p className="text-base md:text-lg lg:text-xl">
-            Pour prendre un rendez-vous, veuillez nous contacter au :
-          </p>
-          <a
-            href="tel:0493506971"
-            className="mt-2 bg-green text-white py-2 px-4 rounded"
-          >
-            0493506975
-          </a>
         </div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

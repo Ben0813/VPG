@@ -1,44 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const TestimonialsForm = () => {
-  // eslint-disable-next-line
-  const [testimonials, setTestimonials] = useState([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState("");
-
-  useEffect(() => {
-    fetchTestimonials();
-  }, []);
-  // eslint-disable-next-line
-  const fetchTestimonials = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/Testimonials");
-      setTestimonials(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  // eslint-disable-next-line
-  const deleteTestimonial = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3000/Testimonials/${id}`);
-      fetchTestimonials();
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const createTestimonial = async (event) => {
     event.preventDefault();
 
     const newData = {
-      name: name,
-      comment: comment,
-      rating: rating,
+      name,
+      comment,
+      rating,
       approved: false,
-      userId: 1, // Replace with the actual user ID
+      userId: 34,
     };
 
     try {
@@ -46,7 +22,6 @@ const TestimonialsForm = () => {
       setName("");
       setComment("");
       setRating("");
-      fetchTestimonials();
     } catch (error) {
       console.error(error);
     }
@@ -55,7 +30,7 @@ const TestimonialsForm = () => {
   return (
     <div className="bg-khaki-lighter p-8 rounded-lg shadow-lg">
       <h1 className="text-2xl font-bold text-rich mb-6 font-rajdhani">
-        Laissez-nous votre commentaire
+        Laissez-nous vos commentaires
       </h1>
       <form onSubmit={createTestimonial} className="flex flex-col space-y-4">
         <input
@@ -66,9 +41,8 @@ const TestimonialsForm = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <input
+        <textarea
           className="px-3 py-2 border border-metal rounded font-barlow"
-          type="text"
           placeholder="Commentaire"
           required
           value={comment}
@@ -79,7 +53,7 @@ const TestimonialsForm = () => {
           type="number"
           placeholder="Note (1-5)"
           required
-          min="0"
+          min="1"
           max="5"
           value={rating}
           onChange={(e) => setRating(e.target.value)}

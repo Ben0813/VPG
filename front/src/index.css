@@ -1,3 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@font-face {
+    font-family: 'rajdhani';
+    src: url('../public/fonts/rajdhani-v15-latin-regular.woff2') format('woff2');
+
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'barlow';
+    src: url('../public/fonts/barlow-v12-latin-regular.woff2') format('woff2');
+
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  

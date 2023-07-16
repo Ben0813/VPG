@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const getCurrentUserId = () => {
-  // Récupérer l'ID de l'utilisateur à partir du localStorage
   const userId = localStorage.getItem("userId");
   return userId ? userId : "";
 };
@@ -154,7 +153,7 @@ const CarsPanel = () => {
                 Supprimer
               </button>
               <button
-                className="bg-raisin text-white px-4 py-2 rounded mr-2 font-rajdhani"
+                className="bg-onyx text-white px-4 py-2 rounded mr-2 font-rajdhani"
                 onClick={() => openUpdatePanel(car)}
               >
                 Modifier
@@ -244,16 +243,16 @@ const CarsPanel = () => {
             />
             <div>
               <button
-                className="bg-green-500 text-white px-4 py-2 rounded mr-2"
+                className="bg-green text-white px-4 py-2 rounded mr-2"
                 onClick={() => updateCar(selectedCar.id)}
               >
                 Save
               </button>
               <button
-                className="bg-red-500 text-white px-4 py-2 rounded mr-2"
+                className="bg-red text-white px-4 py-2 rounded mr-2"
                 onClick={closeUpdatePanel}
               >
-                Cancel
+                Annuler
               </button>
             </div>
           </div>
@@ -332,16 +331,16 @@ const CarsPanel = () => {
                 />
               )}
               <button
-                className="bg-green-500 text-white px-4 py-2 rounded mr-2"
+                className="bg-green text-white px-4 py-2 rounded mr-2"
                 onClick={createCar}
               >
-                Add Car
+                Ajouter
               </button>
               <button
-                className="bg-gray-500 text-white px-4 py-2 rounded"
+                className="bg-red text-white px-4 py-2 rounded"
                 onClick={closeCreatePanel}
               >
-                Cancel
+                Annuler
               </button>
             </div>
           </div>

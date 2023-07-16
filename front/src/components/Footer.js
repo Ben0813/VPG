@@ -17,33 +17,41 @@ function Footer() {
     setIsOpen(!isOpen);
   };
 
+  const handlePhoneClick = () => {
+    window.location.href = "tel:0493506971";
+  };
+
   return (
     <footer className="bg-black text-white py-4">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
-        <p className="mb-4 text-center sm:text-left sm:mb-0 sm:mr-4">
-          20 rue de l'ECF, 5000 Namur
-        </p>
-        <ul className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-4 text-center sm:mb-0">
-          <li>
-            <Link to="/cgv" className="text-white">
-              CGV
-            </Link>
-          </li>
-          <li>
-            <a href="#" className="text-white">
-              Politique des cookies
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-white">
-              Politique de confidentialité
-            </a>
-          </li>
-        </ul>
-        <div>
+        <div className="flex flex-col items-center sm:items-start mb-4 sm:mb-0">
+          <button
+            className="bg-raisin hover:bg-green text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2"
+            type="button"
+            onClick={handlePhoneClick}
+          >
+            Téléphoner
+          </button>
+          <p className="text-center sm:text-left">
+            20 rue de l'ECF, 5000 Namur
+          </p>
+        </div>
+        <div className="flex flex-col items-center sm:items-center mb-4 sm:mb-0">
+          <Link to="/cgv" className="text-white hover:text-khaki mb-2">
+            CGV
+          </Link>
+          <Link
+            to="/politique-de-confidentialite"
+            className="text-white hover:text-khaki"
+          >
+            Politique de confidentialité
+          </Link>
+        </div>
+        <div className="flex flex-col items-center sm:items-end">
           <button
             onClick={handleToggle}
-            className="text-white focus:outline-none hover:text-blue-500"
+            className="bg-raisin hover:bg-khaki text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 sm:mb-0"
+            type="button"
           >
             Horaires
           </button>
@@ -62,11 +70,4 @@ function Footer() {
   );
 }
 
-export default function App() {
-  return (
-    <div>
-      {/* Other components */}
-      <Footer />
-    </div>
-  );
-}
+export default Footer;

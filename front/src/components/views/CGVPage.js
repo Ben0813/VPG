@@ -4,59 +4,66 @@ import Footer from "../Footer";
 
 const CGVPage = () => {
   return (
-    <div className="font-rajdhani text-raisin bg-rich min-h-screen p-4">
+    <div className="flex flex-col min-h-screen bg-rich text-khaki font-rajdhani">
       <Header />
-      <h1 className="text-4xl mb-4">Garage Automobile Vincent Parrot</h1>
-      <h2 className="text-6xl text-khaki mb-2 text-center">
-        Conditions Générales de Vente
-      </h2>
+      <main className="flex-grow pt-24 p-4">
+        <h1 className="text-6xl text-khaki mb-2 text-center mt-4">
+          Conditions Générales de Vente
+        </h1>
 
-      <section className="flex flex-col mt-4">
-        <h3 className="text-4xl text-khaki mb-1">Réparation Mécanique</h3>
-        <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
-          Toutes les réparations mécaniques effectuées par notre garage sont
-          garanties pendant une période de 12 mois ou 20 000 km, selon la
-          première éventualité.
-        </p>
-      </section>
+        <section className="flex flex-col mt-4">
+          <h3 className="text-2xl text-khaki mb-1">Réparation mécanique</h3>
+          <p className="text-lg text-white md:text-xl lg:text-xl text-justify font-barlow">
+            Tous les travaux de réparation mécanique sont couverts par une
+            garantie de 6 mois. Si le même problème se produit pendant cette
+            période, nous le réparons gratuitement.
+          </p>
+        </section>
 
-      <section className="flex flex-col mt-4">
-        <h3 className="text-4xl text-khaki mb-1">Entretien</h3>
-        <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
-          Nos services d'entretien sont réalisés conformément aux spécifications
-          du fabricant. Les pièces remplacées lors de l'entretien sont
-          disponibles pour inspection sur demande.
-        </p>
-      </section>
+        <section className="flex flex-col mt-4">
+          <h3 className="text-2xl text-khaki mb-1">Entretien</h3>
+          <p className="text-lg text-white md:text-xl lg:text-xl text-justify font-barlow">
+            Les services d'entretien doivent être payés au moment du service.
+            Les annulations doivent être effectuées au moins 24 heures à
+            l'avance pour un remboursement complet.
+          </p>
+        </section>
 
-      <section className="flex flex-col mt-4">
-        <h3 className="text-4xl text-khaki mb-1">Pneumatiques</h3>
-        <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
-          Nous fournissons une gamme de pneus de différentes marques. Tous les
-          pneus vendus et installés par notre garage sont couverts par la
-          garantie du fabricant.
-        </p>
-      </section>
+        <section className="flex flex-col mt-4">
+          <h3 className="text-2xl text-khaki mb-1">Pneumatiques</h3>
+          <p className="text-lg text-white md:text-xl lg:text-xl text-justify font-barlow">
+            Les pneus achetés chez nous sont couverts par une garantie de 12
+            mois ou 12 000 km, selon le premier de ces événements à se produire.
+            Cette garantie couvre les défauts de fabrication et ne couvre pas
+            les dommages causés par l'usure normale, les accidents ou
+            l'utilisation inappropriée.
+          </p>
+        </section>
 
-      <section className="flex flex-col mt-4">
-        <h3 className="text-4xl text-khaki mb-1">Carrosserie</h3>
-        <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
-          Nos travaux de carrosserie sont garantis pendant une période de 24
-          mois. Nous nous engageons à réparer ou à remplacer tout travail de
-          carrosserie qui présente des défauts de matériaux ou de fabrication.
-        </p>
-      </section>
+        <section className="flex flex-col mt-4">
+          <h3 className="text-2xl text-khaki mb-1">Carrosserie</h3>
+          <p className="text-lg text-white md:text-xl lg:text-xl text-justify font-barlow">
+            Les travaux de carrosserie sont couverts par une garantie de 12
+            mois. Cette garantie couvre les défauts de matériaux et de
+            fabrication. Elle ne couvre pas les dommages causés par des
+            accidents, des chocs ou des conditions météorologiques extrêmes
+            après la réparation.
+          </p>
+        </section>
 
-      <section className="flex flex-col mt-4">
-        <h3 className="text-4xl text-khaki mb-1 mt-4">
-          Vente de Véhicules d'Occasion
-        </h3>
-        <p className="text-lg text-white md:text-xl lg:text-2xl text-justify font-barlow">
-          Tous nos véhicules d'occasion sont vendus avec une garantie de 12 mois
-          ou 20 000 km. Nous fournissons un historique complet du véhicule et
-          une inspection pré-achat est disponible sur demande.
-        </p>
-      </section>
+        <section className="flex flex-col mt-4">
+          <h3 className="text-2xl text-khaki mb-1">
+            Vente de Véhicules d'Occasion
+          </h3>
+          <p className="text-lg text-white md:text-xl lg:text-xl text-justify font-barlow">
+            Tous les véhicules d'occasion sont vendus en l'état et sans
+            garantie, sauf indication contraire écrite et signée par nous. Les
+            acheteurs ont le droit d'inspecter le véhicule avant l'achat. Toutes
+            les ventes sont finales.
+          </p>
+          <p className="text-white mt-4 mb-4">Mise à jour le 14 juillet 2023</p>
+        </section>
+      </main>
       <Footer />
     </div>
   );
