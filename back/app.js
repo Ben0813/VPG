@@ -95,7 +95,7 @@ app.post("/login", async (req, res) => {
     { id: user.id, role: user.role },
     process.env.JWT_SECRET
   );
-  // Adding the user's role to the response
+  //adding the user's role to the response
   res.json({ token, role: user.role });
 });
 
