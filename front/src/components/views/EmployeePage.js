@@ -29,7 +29,7 @@ const EmployeePage = () => {
   };
 
   return (
-    <div className="bg-white p-4 sm:p-8 h-screen">
+    <div className="bg-gradient-to-b from-khaki via-white to-khaki p-4 sm:p-8 min-h-screen">
       <div className="mb-8 flex justify-end">
         <button
           className="bg-raisin hover:bg-red text-white py-2 px-4 rounded font-rajdhani"

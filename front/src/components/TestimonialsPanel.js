@@ -54,7 +54,7 @@ const TestimonialsList = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-khaki p-4">
+    <div className="min-h-screen p-4">
       <h2 className="text-3xl font-rajdhani text-center mb-4">
         Gestion des commentaires
       </h2>
