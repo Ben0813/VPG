@@ -13,23 +13,31 @@ OpeningHour.init(
     },
     dayOfWeek: {
       type: DataTypes.ENUM(
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+        "Lundi",
+        "Mardi",
+        "Mercredi",
+        "Jeudi",
+        "Vendredi",
+        "Samedi",
+        "Dimanche"
       ),
       allowNull: false,
     },
     openTime: {
-      type: DataTypes.TIME,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     closeTime: {
-      type: DataTypes.TIME,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    secondOpenTime: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    secondCloseTime: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

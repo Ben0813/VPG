@@ -14,7 +14,7 @@ const TestimonialsForm = () => {
       comment,
       rating,
       approved: false,
-      userId: 34,
+      userId: 14,
     };
 
     try {

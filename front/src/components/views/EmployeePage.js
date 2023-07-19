@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TestimonialsList from "../TestimonialsPanel";
 import CarsPanel from "../CarsPanel";
+import TestimonialsForm from "../TestimonialsForm";
 
 //is for redirecting to login page if user is not authenticated
 const EmployeePage = () => {
@@ -25,7 +26,7 @@ const EmployeePage = () => {
     localStorage.removeItem("role");
 
     //redirect to logout page
-    window.location.href = "http://localhost:3002";
+    navigate("/");
   };
 
   return (
@@ -40,6 +41,7 @@ const EmployeePage = () => {
       </div>
       <div className="space-y-8">
         <TestimonialsList />
+        <TestimonialsForm />
         <CarsPanel />
       </div>
     </div>

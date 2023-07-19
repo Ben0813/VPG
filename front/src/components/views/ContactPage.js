@@ -22,7 +22,7 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, message, phone } = formState;
-    const mailtoLink = `mailto:benoitdewigne@gmail.com?subject=Nouveau%20message%20de%20contact&body=Nom:%20${name}%0AEmail:%20${email}%0ANum%C3%A9ro%20de%20t%C3%A9l%C3%A9phone:%20${phone}%0AMessage:%20${message}`;
+    const mailtoLink = `mailto:info@vpgarage.com?subject=Nouveau%20message%20de%20contact&body=Nom:%20${name}%0AEmail:%20${email}%0ANum%C3%A9ro%20de%20t%C3%A9l%C3%A9phone:%20${phone}%0AMessage:%20${message}`;
     window.location.href = mailtoLink;
   };
 

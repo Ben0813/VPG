@@ -33,10 +33,19 @@ const CarSelector = () => {
   const [mileageFilter, setMileageFilter] = useState(300000);
   const [priceFilter, setPriceFilter] = useState(25000);
 
+  //reset filters
+  const resetFilters = () => {
+    setMakeFilter("");
+    setModelFilter("");
+    setYearFilter(new Date().getFullYear());
+    setMileageFilter(300000);
+    setPriceFilter(25000);
+  };
+
   //show car data when the component is mounted
   useEffect(() => {
     axios
-      .get(`{process.env.REACT_APP_API_URL}/Cars`)
+      .get(`${process.env.REACT_APP_API_URL}/Cars`)
       .then((response) => {
         setCars(response.data);
       })
@@ -64,10 +73,10 @@ const CarSelector = () => {
 
   //create a mailto link for information request
   const createMailToLink = (carId) => {
-    const subject = `Interested in car no. ${carId}`;
+    const subject = `Intéressé par la voiture no. ${carId}`;
     const body =
-      "Hello, I am interested in this vehicle. Could you please provide more information?";
-    return `mailto:benoitdewigne@gmail.com?subject=${encodeURIComponent(
+      "Bonjour, je suis intéressé par ce véhicule. Pourriez-vous s'il vous plaît fournir plus d'informations?";
+    return `mailto:info@vpgarage.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
   };
@@ -101,7 +110,7 @@ const CarSelector = () => {
                   <img
                     src={`${process.env.REACT_APP_API_URL}${car.pictureUrl}`}
                     alt={car.make}
-                    className="w-full h-32 object-cover mb-2"
+                    className="w-full h-auto object-contain mb-2"
                   />
                 )}
                 <button
@@ -163,6 +172,12 @@ const CarSelector = () => {
               onChange={setPriceFilter}
             />
           </div>
+          <button
+            onClick={resetFilters}
+            className="bg-raisin text-white py-2 px-4 rounded mt-4"
+          >
+            Réinitialiser
+          </button>
         </div>
       </div>
     </div>

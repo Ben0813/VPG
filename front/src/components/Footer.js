@@ -63,6 +63,9 @@ function Footer() {
               {openingHours.map((hours) => (
                 <li key={hours.id}>
                   {hours.dayOfWeek}: {hours.openTime} - {hours.closeTime}
+                  {hours.secondOpenTime && hours.secondCloseTime
+                    ? ` et ${hours.secondOpenTime} - ${hours.secondCloseTime}`
+                    : ""}
                 </li>
               ))}
             </ul>

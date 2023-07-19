@@ -126,7 +126,7 @@ app.use("/testimonials", testimonialRoutes);
 
 //synchronizing models and starting the server
 sequelize
-  .sync({ alter: true })
+  .sync({ alter: false })
   .then(() => {
     console.log("All models were synchronized successfully.");
 

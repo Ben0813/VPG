@@ -26,7 +26,7 @@ const PrivacyPolicyPage = () => {
             automobiles. Notre siège social est situé au 20 rue de l'ECF, 5000
             Namur, France. Pour toute question ou demande concernant notre
             politique de confidentialité, veuillez nous contacter à l'adresse
-            suivante : info@vincentparrotgarage.com.
+            suivante : info@vpgarage.com .
           </p>
         </section>
 
