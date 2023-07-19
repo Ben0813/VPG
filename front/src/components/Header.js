@@ -78,7 +78,7 @@ const Header = () => {
         <div className="flex items-center">
           <Link to="/" className="cursor-pointer">
             <img
-              src="http://localhost:3000/uploads/logo.png"
+              src={`${process.env.REACT_APP_API_URL}/uploads/logo.png`}
               alt="logo"
               className="h-12"
             />

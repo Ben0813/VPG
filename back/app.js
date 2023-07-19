@@ -5,7 +5,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import session from "express-session";
 
 import AdminJS from "adminjs";
@@ -16,7 +16,7 @@ import AdminJSSequelize from "@adminjs/sequelize";
 import { sequelize } from "./models/index.js";
 import User from "./models/user.js";
 import carRoutes from "./routes/cars.js";
-import openingHourRoutes from "./routes/openinghours.js";
+import openingHourRoutes from "./routes/openingHours.js";
 import serviceRoutes from "./routes/services.js";
 import testimonialRoutes from "./routes/testimonials.js";
 
@@ -126,7 +126,7 @@ app.use("/testimonials", testimonialRoutes);
 
 //synchronizing models and starting the server
 sequelize
-  .sync({ alter: false })
+  .sync({ alter: true })
   .then(() => {
     console.log("All models were synchronized successfully.");
 

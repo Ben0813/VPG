@@ -1,12 +1,11 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
-import openinghoursController from '../controllers/openinghoursController.js';
+import openinghoursController from "../controllers/openingHoursController.js";
 
-router.get('/', openinghoursController.getAllOpeningHours);
-router.get('/:id', openinghoursController.getOpeningHourById);
-router.post('/', openinghoursController.createOpeningHour);
-router.put('/:id', openinghoursController.updateOpeningHour);
-router.delete('/:id', openinghoursController.deleteOpeningHour);
-
+router.get("/", openinghoursController.getAllOpeningHours);
+router.get("/:id", openinghoursController.getOpeningHourById);
+router.post("/", openinghoursController.createOpeningHour);
+router.put("/:id", openinghoursController.updateOpeningHour);
+router.delete("/:id", openinghoursController.deleteOpeningHour);
 
 export default router;

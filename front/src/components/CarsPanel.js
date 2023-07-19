@@ -32,7 +32,7 @@ const CarsPanel = () => {
   //fetch list of cars from the server
   const fetchCars = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/Cars");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/Cars`);
       setCars(response.data);
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ const CarsPanel = () => {
 
   const deleteCar = async (carId) => {
     try {
-      await axios.delete(`http://localhost:3000/Cars/${carId}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/Cars/${carId}`);
       fetchCars();
     } catch (error) {
       console.log(error);
@@ -72,11 +72,15 @@ const CarsPanel = () => {
         formData.append("image", updateImageFile);
       }
 
-      await axios.put(`http://localhost:3000/Cars/${carId}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/Cars/${carId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       fetchCars();
       closeUpdatePanel();
@@ -106,7 +110,7 @@ const CarsPanel = () => {
 
       formData.append("image", imageFile);
 
-      await axios.post("http://localhost:3000/Cars", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/Cars`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -140,7 +144,7 @@ const CarsPanel = () => {
             className="bg-metal text-white p-4 rounded-xl shadow"
           >
             <img
-              src={`http://localhost:3000${car.pictureUrl}`}
+              src={`${process.env.REACT_APP_API_URL}${car.pictureUrl}`}
               alt={car.make}
               className="w-full mb-4"
             />

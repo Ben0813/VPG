@@ -7,7 +7,7 @@ const ServicesPage = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/Services").then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/Services`).then((response) => {
       setServices(response.data);
     });
   }, []);

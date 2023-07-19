@@ -23,10 +23,13 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
 
       /**
        * handles the submission of the form and send a POST request to the API
@@ -38,7 +41,7 @@ const LoginPage = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("role", role);
         if (role === "admin") {
-          window.location.href = "http://localhost:3000/admin/login";
+          window.location.href = `${process.env.REACT_APP_API_URL}/admin/login`;
         } else {
           navigate("/employee");
         }

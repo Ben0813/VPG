@@ -36,7 +36,7 @@ const CarSelector = () => {
   //show car data when the component is mounted
   useEffect(() => {
     axios
-      .get("http://localhost:3001/Cars")
+      .get(`{process.env.REACT_APP_API_URL}/Cars`)
       .then((response) => {
         setCars(response.data);
       })
@@ -99,7 +99,7 @@ const CarSelector = () => {
                 <p className="text-gray-900 mb-2">Prix : {car.price} €</p>
                 {car.pictureUrl && (
                   <img
-                    src={`http://localhost:3000${car.pictureUrl}`}
+                    src={`${process.env.REACT_APP_API_URL}${car.pictureUrl}`}
                     alt={car.make}
                     className="w-full h-32 object-cover mb-2"
                   />

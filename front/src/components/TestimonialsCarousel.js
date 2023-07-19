@@ -35,7 +35,9 @@ const TestimonialsCarousel = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/Testimonials");
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Testimonials`
+        );
         const approvedTestimonials = response.data.filter(
           (testimonial) => testimonial.approved
         );

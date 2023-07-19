@@ -18,7 +18,10 @@ const TestimonialsForm = () => {
     };
 
     try {
-      await axios.post("http://localhost:3000/Testimonials", newData);
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/Testimonials`,
+        newData
+      );
       setName("");
       setComment("");
       setRating("");

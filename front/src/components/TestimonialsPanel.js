@@ -7,9 +7,12 @@ const TestimonialsPanel = ({ testimonial }) => {
   // toggles the testimonial approve status and updates in the database
   const toggleApproval = async () => {
     try {
-      await axios.put(`http://localhost:3000/Testimonials/${testimonial.id}`, {
-        approved: !approved,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/Testimonials/${testimonial.id}`,
+        {
+          approved: !approved,
+        }
+      );
       setApproved((prevApproved) => !prevApproved);
     } catch (error) {
       console.error(error);
@@ -43,7 +46,9 @@ const TestimonialsList = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/Testimonials");
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/Testimonials`
+        );
         setTestimonials(response.data);
       } catch (error) {
         console.error(error);

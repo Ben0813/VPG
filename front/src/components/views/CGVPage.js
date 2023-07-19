@@ -75,3 +75,5 @@ const CGVPage = () => {
 };
 
 export default CGVPage;
+
+// ...

@@ -9,13 +9,13 @@ const Hero = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/Services")
+      .get(`${process.env.REACT_APP_API_URL}/Services`)
       .then((response) => setServices(response.data))
       .catch((error) => console.log(error));
   }, []);
 
   const backgroundImage = {
-    backgroundImage: `url('http://localhost:3000/uploads/services.jpg')`,
+    backgroundImage: `url('${process.env.REACT_APP_API_URL}/uploads/services.jpg')`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
@@ -59,3 +59,4 @@ const Hero = () => {
 };
 
 export default Hero;
+//

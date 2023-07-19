@@ -1,4 +1,7 @@
 {
+  "engine": {
+    "node": "16.20.0"
+  },
   "name": "back",
   "version": "1.0.0",
   "description": "",
@@ -14,7 +17,7 @@
     "@adminjs/express": "^6.0.0",
     "@adminjs/sequelize": "^4.0.0",
     "adminjs": "^7.0.6",
-    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^9.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",

@@ -9,7 +9,7 @@ function Footer() {
   //fetch opening hours data from the server
   useEffect(() => {
     axios
-      .get("http://localhost:3000/OpeningHours")
+      .get(`${process.env.REACT_APP_API_URL}/OpeningHours`)
       .then((response) => setOpeningHours(response.data))
       .catch((error) => console.log(error));
   }, []);
