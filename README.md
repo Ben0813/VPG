@@ -31,7 +31,8 @@ DB_USER=your_mysql_username
 DB_PASS=your_mysql_password
 
 Démarrage du serveur backend
-Vous pouvez démarrer le serveur backend en exécutant la commande suivante : npm start (Pour le premier démarrage du serveur, dans app.js passer la valeur de "false" à "true" (ligne 129) cela synchronisera les models avec sequelize. Ensuite executez la commande : npm start.)
+Vous pouvez démarrer le serveur backend en exécutant la commande suivante : npm start 
+(Lors du premier démarrage du serveur, dans le fichier app.js, vous devez passer la valeur de "false" à "true" à la ligne 129. Cela synchronisera les modèles avec Sequelize. Ensuite, exécutez à nouveau la commande: npm start)
 
 Une fois les models synchronisés, n'oubliez pas de retablir la valeur à false!
 
