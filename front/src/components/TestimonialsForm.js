@@ -14,7 +14,7 @@ const TestimonialsForm = () => {
       comment,
       rating,
       approved: false,
-      userId: 14,
+      userId: `${process.env.REACT_APP_USER_ID}`,
     };
 
     try {
@@ -54,9 +54,9 @@ const TestimonialsForm = () => {
         <input
           className="px-3 py-2 border border-metal rounded font-barlow"
           type="number"
-          placeholder="Note (1-5)"
+          placeholder="Note (0-5)"
           required
-          min="1"
+          min="0"
           max="5"
           value={rating}
           onChange={(e) => setRating(e.target.value)}
