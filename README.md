@@ -65,7 +65,7 @@ Enregistrez le fichier et exécutez la commande suivante : node ./models/admin.j
 
 Maintenant, vous devriez pouvoir vous connecter à l'interface AdminJS avec le nom d'utilisateur et le mot de passe de l'administrateur que vous venez de créer.
 
-Si vous rencontrez des difficultés, vous pouvez également, dans app.js passer la valeur de "false" à "true" (ligne 129) cela synchronisera les models avec sequelize. Ensuite executez la commande : npm start.
+Si vous rencontrez des difficultés, vous pouvez également, dans app.js, passer la valeur de "false" à "true" (ligne 129) cela synchronisera les models avec sequelize. Ensuite executez la commande : npm start.
 Une fois les models synchronisés, n'oubliez pas de retablir la valeur à false!
 
 => Attention, une fois votre administrateur créé, n'oubliez pas de supprimer le fichier admin.js pour préserver la sécurité de votre application. <=
